@@ -16,6 +16,7 @@ public class Main extends PApplet {
 
 	public void setup() {
 		app = new Logica(this);
+		shapeMode(CENTER);
 	}
 
 	public void draw() {

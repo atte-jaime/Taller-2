@@ -9,7 +9,7 @@ public class Energia extends Elemento implements Recogible{
 
 	@Override
 	public void pintar() {
-		// TODO Auto-generated method stub
+
 		
 	}
 

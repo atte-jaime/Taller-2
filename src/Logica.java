@@ -4,7 +4,7 @@ import processing.core.PShape;
 
 public class Logica {
 	private PApplet app;
-	private int contadorP;
+	private int contadorP=3;
 	private int posY, posY2;
 	private float opacidad = 255;
 	private boolean animacionInicio, cambioP, cambioPatras;
@@ -14,6 +14,7 @@ public class Logica {
 	private PShape[] elementos= new PShape[5];
 	private PShape personaje = new PShape();
 	private PShape enemigo = new PShape();
+	private Personaje per;
 	
 	Logica(PApplet app) {
 		this.app = app;
@@ -27,6 +28,8 @@ public class Logica {
 		for (int i = 0; i < 5; i++) {
 			elementos[i]= app.loadShape("../data/Elementos/Elemento"+i+"-09.svg");
 		}
+		
+		per= new Personaje(personaje, app);
 		
 	}
 
@@ -96,7 +99,9 @@ public class Logica {
 	}
 
 	public void ejecutar() {
-
+		per.actualizar();
+		per.perseguir();
+		per.pintar();
 	}
 
 	public void pressed() {
