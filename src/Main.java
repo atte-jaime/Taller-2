@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class Main extends PApplet {
 
 	public static void main(String[] args) {
-		Main.main("MAIN");
+		Main.main("Main");
 	}
 
 	Logica app;
@@ -19,7 +19,7 @@ public class Main extends PApplet {
 	}
 
 	public void draw() {
-		background(0);
+		background(29, 29, 27);
 		app.pintar();
 	}
 
@@ -29,6 +29,7 @@ public class Main extends PApplet {
 
 	public void keyPressed() {
 		app.key();
+		if(key==ESC) exit();
 	}
 
 }
