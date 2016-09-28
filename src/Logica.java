@@ -122,8 +122,8 @@ public class Logica {
 
 		case 3:
 			fondo();
-			app.image(panelO, 0, 0);
 			ejecutar();
+			app.image(panelO, 0, 0);
 			break;
 
 		default:

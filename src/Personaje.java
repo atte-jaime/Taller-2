@@ -22,7 +22,7 @@ public class Personaje {
 	public Personaje(PShape p, PApplet app) {
 		this.app = app;
 		vel = new PVector(0, 0);
-		ace = new PVector(0, 0);
+		ace = new PVector(0, 0);         
 		pos = new PVector(app.width / 2, app.height / 2);
 		fuerzaMax = (float) 0.1;
 		velMax = 4;
@@ -74,8 +74,8 @@ public class Personaje {
 		float angulo = vel.heading() + PApplet.PI / 2;
 		app.fill(255);
 		app.noStroke();
-		app.translate(pos.x, pos.y);
 		app.pushMatrix();
+		app.translate(pos.x, pos.y);
 		app.rotate(angulo);
 		for (int i = 0; i < elementos.size(); i++) {
 			Recogible e = elementos.get(i);
