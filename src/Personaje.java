@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PShape;
 import processing.core.PVector;
 
@@ -14,15 +15,15 @@ public class Personaje {
 	private float fuerzaMax;
 	private float velMax;
 	private float poder;
-	private float vida;
-	private float tamaño;
+	private float vida = 250;
+	private float tamaño=1;
 	private float resis;
 	private LinkedList<Recogible> elementos;
 
 	public Personaje(PShape p, PApplet app) {
 		this.app = app;
 		vel = new PVector(0, 0);
-		ace = new PVector(0, 0);         
+		ace = new PVector(0, 0);
 		pos = new PVector(app.width / 2, app.height / 2);
 		fuerzaMax = (float) 0.1;
 		velMax = 4;
@@ -66,8 +67,15 @@ public class Personaje {
 		app.pushMatrix();
 		app.translate(pos.x, pos.y);
 		app.rotate(angulo);
-		app.shape(personaje);
+		app.shape(personaje,0,0, personaje.width/tamaño, personaje.height/tamaño);
 		app.popMatrix();
+		app.fill(255);
+		app.textSize(25);
+		app.text("HEALTH", 20, 20);
+		app.fill(255, 100);
+		app.rect(140, 20, 250, 22);
+		app.fill(0, 255, 200);
+		app.rect(140, 20, vida, 22);
 	}
 
 	public void pintarElementos() {
@@ -121,5 +129,58 @@ public class Personaje {
 		} else {
 			return false;
 		}
+	}
+
+	public LinkedList<Recogible> getElementos() {
+		return elementos;
+	}
+
+	public float getVelMax() {
+		return velMax;
+	}
+
+	public float getVida() {
+		return vida;
+	}
+
+	public float getTamaño() {
+		return tamaño;
+	}
+
+	public float getResis() {
+		return resis;
+	}
+
+	public float getPoder() {
+		return poder;
+	}
+
+	public void setPoder(float poder) {
+		this.poder += poder;
+	}
+
+	public void setVelMax(float velMax) {
+		if (this.velMax + (velMax) > 0 && this.velMax + (velMax) < 15) {
+			this.velMax += velMax;
+		}
+	}
+
+	public void setVida(float vida) {
+		if (this.vida+(vida)<250 && this.vida+(vida)>0) {
+			this.vida += vida;
+		}
+	}
+
+	public void setTamaño(float tamaño) {
+		if (this.tamaño+(tamaño)> 0.5 && this.tamaño+(tamaño)< 3) {
+			this.tamaño += tamaño;
+	}}
+
+	public void setResis(float resis) {
+		this.resis += resis;
+	}
+
+	public void setElementos(LinkedList<Recogible> elementos) {
+		this.elementos = elementos;
 	}
 }

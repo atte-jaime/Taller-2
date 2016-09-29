@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 import processing.core.PShape;
 
@@ -10,6 +11,7 @@ public class Logica {
 	private int posY, posY2;
 	private float opacidad = 255;
 	private boolean animacionInicio, cambioP, cambioPatras;
+	private PFont fuente;
 	private PImage[] inicio = new PImage[2];
 	private PImage[] pag = new PImage[2];
 	private PImage panelO = new PImage();
@@ -21,6 +23,10 @@ public class Logica {
 
 	Logica(PApplet app) {
 		this.app = app;
+		fuente = app.createFont("../data/Fuente/MUSEOSANS_100-WEBFONT.TTF", 32);
+		app.textFont(fuente);
+		app.textAlign(PApplet.LEFT, PApplet.TOP);
+
 		panelO = app.loadImage("../data/Interfaz/panelOrganizar.png");
 		inicio[0] = app.loadImage("../data/Interfaz/Inicio1.png");
 		inicio[1] = app.loadImage("../data/Interfaz/Inicio2.png");
@@ -144,16 +150,41 @@ public class Logica {
 			Recogible o = objetos.get(i);
 			o.pintar();
 
-			if (per.validarDist(o.getPosX(), o.getPosY()) == true) {
-				per.agregarElemento(o);
-				objetos.remove(o);
+			if (per.validarDist(o.getPosX(), o.getPosY()) == true && per.getElementos().size() < 10) {
+				if (o instanceof Tierra) {
+					per.agregarElemento(o);
+					per.setVida(10);
+					per.setVelMax((float) -0.5);
+					objetos.remove(o);
+				} else if (o instanceof Agua) {
+					per.agregarElemento(o);
+					per.setPoder(-1);
+					per.setVelMax((float) 0.5);
+					objetos.remove(o);
+				} else if (o instanceof Fuego) {
+					per.agregarElemento(o);
+					per.setPoder(1);
+					per.setResis((float) -0.5);
+					objetos.remove(o);
+				} else if (o instanceof Energia) {
+					per.agregarElemento(o);
+					per.setVida(-10);
+					per.setTamaño((float) -0.05);
+					objetos.remove(o);
+				} else if (o instanceof Aire) {
+					per.agregarElemento(o);
+					per.setResis(10);
+					per.setTamaño((float)0.05);
+					objetos.remove(o);
+				}
+
 			}
 		}
 		crearNuevosE();
 		per.actualizar();
 		per.perseguir();
-		per.pintar();
 		per.pintarElementos();
+		per.pintar();
 
 	}
 
