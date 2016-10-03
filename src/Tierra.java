@@ -21,18 +21,6 @@ public class Tierra implements Recogible{
 		app.shape(forma, posX, posY, forma.width/escala, forma.height/escala);
 	}
 
-	@Override
-	public void pros() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void contras() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public int getPosX() {
 		return posX;
 	}

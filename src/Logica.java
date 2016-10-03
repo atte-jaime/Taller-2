@@ -7,7 +7,7 @@ import processing.core.PShape;
 
 public class Logica {
 	private PApplet app;
-	private int contadorP = 3;
+	private int contadorP = 0;
 	private int posY, posY2;
 	private float opacidad = 255;
 	private boolean animacionInicio, cambioP, cambioPatras;
@@ -17,9 +17,10 @@ public class Logica {
 	private PImage panelO = new PImage();
 	private PShape[] elementos = new PShape[5];
 	private PShape personaje = new PShape();
-	private PShape enemigo = new PShape();
+	private PShape[] enemies = new PShape[5];
 	private Personaje per;
 	private ArrayList<Recogible> objetos;
+	private ArrayList<Enemigos> enemigos;
 
 	Logica(PApplet app) {
 		this.app = app;
@@ -33,10 +34,14 @@ public class Logica {
 		pag[0] = app.loadImage("../data/Interfaz/pag2.png");
 		pag[1] = app.loadImage("../data/Interfaz/pag3.png");
 		personaje = app.loadShape("../data/Personaje/Personaje.svg");
-		enemigo = app.loadShape("../data/Personaje/Enemigo.svg");
 		objetos = new ArrayList<Recogible>();
+		enemigos = new ArrayList<Enemigos>();
 		for (int i = 0; i < 5; i++) {
 			elementos[i] = app.loadShape("../data/Elementos/Elemento" + i + "-09.svg");
+		}
+		for (int i = 0; i < 5; i++) {
+			enemies[i] = app.loadShape("../data/Personaje/Enemigo"+i+".svg");
+
 		}
 
 		for (int i = 0; i < 10; i++) {
@@ -168,7 +173,7 @@ public class Logica {
 					objetos.remove(o);
 				} else if (o instanceof Energia) {
 					per.agregarElemento(o);
-					per.setVida(-10);
+					per.setVida(-30);
 					per.setTamaño((float) -0.05);
 					objetos.remove(o);
 				} else if (o instanceof Aire) {

@@ -26,7 +26,7 @@ public class Personaje {
 		ace = new PVector(0, 0);
 		pos = new PVector(app.width / 2, app.height / 2);
 		fuerzaMax = (float) 0.1;
-		velMax = 4;
+		velMax = 5;
 		personaje = p;
 		personaje.disableStyle();
 		elementos = new LinkedList<Recogible>();
@@ -39,7 +39,7 @@ public class Personaje {
 		ace.mult(0);
 	}
 
-	void aplicarFuerza(PVector fuerza) {
+	private void aplicarFuerza(PVector fuerza) {
 		ace.add(fuerza);
 	}
 

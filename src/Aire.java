@@ -22,17 +22,6 @@ public class Aire implements Recogible {
 
 	}
 
-	@Override
-	public void pros() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void contras() {
-		// TODO Auto-generated method stub
-
-	}
 
 	public int getPosX() {
 		return posX;
