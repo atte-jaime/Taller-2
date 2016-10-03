@@ -78,6 +78,10 @@ public class Personaje {
 		app.rect(140, 20, vida, 22);
 	}
 
+	public PVector getPos() {
+		return pos;
+	}
+
 	public void pintarElementos() {
 		float angulo = vel.heading() + PApplet.PI / 2;
 		app.fill(255);

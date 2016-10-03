@@ -1,11 +1,11 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class EneTierra extends Enemigo {
+public class EneFuego extends Enemigo{
 
-	public EneTierra(PImage forma, PApplet app) {
+	public EneFuego(PImage forma, PApplet app) {
 		super(forma, app);
 	}
 
-
+	
 }

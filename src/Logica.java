@@ -7,7 +7,7 @@ import processing.core.PShape;
 
 public class Logica {
 	private PApplet app;
-	private int contadorP = 0;
+	private int contadorP = 3;
 	private int posY, posY2;
 	private float opacidad = 255;
 	private boolean animacionInicio, cambioP, cambioPatras;
@@ -17,10 +17,10 @@ public class Logica {
 	private PImage panelO = new PImage();
 	private PShape[] elementos = new PShape[5];
 	private PShape personaje = new PShape();
-	private PShape[] enemies = new PShape[5];
+	private PImage[] enemies = new PImage[5];
 	private Personaje per;
 	private ArrayList<Recogible> objetos;
-	private ArrayList<Enemigos> enemigos;
+	private ArrayList<Enemigo> enemigos;
 
 	Logica(PApplet app) {
 		this.app = app;
@@ -35,12 +35,12 @@ public class Logica {
 		pag[1] = app.loadImage("../data/Interfaz/pag3.png");
 		personaje = app.loadShape("../data/Personaje/Personaje.svg");
 		objetos = new ArrayList<Recogible>();
-		enemigos = new ArrayList<Enemigos>();
+		enemigos = new ArrayList<Enemigo>();
 		for (int i = 0; i < 5; i++) {
 			elementos[i] = app.loadShape("../data/Elementos/Elemento" + i + "-09.svg");
 		}
 		for (int i = 0; i < 5; i++) {
-			enemies[i] = app.loadShape("../data/Personaje/Enemigo"+i+".svg");
+			enemies[i] = app.loadImage("../data/Personaje/Enemigo-"+i+".png");
 
 		}
 
@@ -160,31 +160,49 @@ public class Logica {
 					per.agregarElemento(o);
 					per.setVida(10);
 					per.setVelMax((float) -0.5);
+					EneTierra temp = new EneTierra(enemies[3], app);
+					enemigos.add(temp);
 					objetos.remove(o);
 				} else if (o instanceof Agua) {
 					per.agregarElemento(o);
 					per.setPoder(-1);
 					per.setVelMax((float) 0.5);
+					EneAgua temp = new EneAgua(enemies[2], app);
+					enemigos.add(temp);
 					objetos.remove(o);
 				} else if (o instanceof Fuego) {
 					per.agregarElemento(o);
 					per.setPoder(1);
 					per.setResis((float) -0.5);
+					EneFuego temp = new EneFuego(enemies[0], app);
+					enemigos.add(temp);
 					objetos.remove(o);
 				} else if (o instanceof Energia) {
 					per.agregarElemento(o);
 					per.setVida(-30);
 					per.setTamaño((float) -0.05);
+					EneEnergia temp = new EneEnergia(enemies[4], app);
+					enemigos.add(temp);
 					objetos.remove(o);
 				} else if (o instanceof Aire) {
 					per.agregarElemento(o);
 					per.setResis(10);
 					per.setTamaño((float)0.05);
+					EneAire temp = new EneAire(enemies[1], app);
+					enemigos.add(temp);
 					objetos.remove(o);
 				}
 
 			}
 		}
+		
+		for (int i = 0; i < enemigos.size(); i++) {
+			Enemigo temp = enemigos.get(i);
+			temp.actualizar();
+			temp.seguirPersonaje(per.getPos());
+			temp.pintarE();
+		}
+		
 		crearNuevosE();
 		per.actualizar();
 		per.perseguir();
