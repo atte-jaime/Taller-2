@@ -1,6 +1,5 @@
 import processing.core.PApplet;
 import processing.core.PImage;
-import processing.core.PShape;
 import processing.core.PVector;
 
 public abstract class Enemigo {
@@ -56,7 +55,9 @@ public abstract class Enemigo {
 		app.pushMatrix();
 		app.translate(pos.x, pos.y);
 		app.rotate(angulo);
+		app.tint(255,100);
 		app.image(forma,0,0);
+		app.noTint();
 		app.popMatrix();
 	}
 	

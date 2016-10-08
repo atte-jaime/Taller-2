@@ -1,13 +1,13 @@
 import processing.core.PApplet;
-import processing.core.PShape;
+import processing.core.PImage;
 
 public class Agua implements Recogible {
 	private PApplet app;
 	private int posX, posY;
-	private PShape forma;
+	private PImage forma;
 	private float escala = 1;
 
-	public Agua(int posX, int posY, PShape forma, PApplet app) {
+	public Agua(int posX, int posY, PImage forma, PApplet app) {
 		this.posX = posX;
 		this.posY = posY;
 		this.forma = forma;
@@ -17,7 +17,7 @@ public class Agua implements Recogible {
 
 	@Override
 	public void pintar() {
-		app.shape(forma, posX, posY, forma.width / escala, forma.height / escala);
+		app.image(forma, posX, posY, forma.width / escala, forma.height / escala);
 	}
 
 	public int getPosX() {

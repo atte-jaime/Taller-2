@@ -15,7 +15,7 @@ public class Logica {
 	private PImage[] inicio = new PImage[2];
 	private PImage[] pag = new PImage[2];
 	private PImage panelO = new PImage();
-	private PShape[] elementos = new PShape[5];
+	private PImage[] elementos = new PImage[5];
 	private PShape personaje = new PShape();
 	private PImage[] enemies = new PImage[5];
 	private Personaje per;
@@ -37,7 +37,7 @@ public class Logica {
 		objetos = new ArrayList<Recogible>();
 		enemigos = new ArrayList<Enemigo>();
 		for (int i = 0; i < 5; i++) {
-			elementos[i] = app.loadShape("../data/Elementos/Elemento" + i + "-09.svg");
+			elementos[i] = app.loadImage("../data/Elementos/Elemento-" + i + ".png");
 		}
 		for (int i = 0; i < 5; i++) {
 			enemies[i] = app.loadImage("../data/Personaje/Enemigo-"+i+".png");
@@ -233,7 +233,6 @@ public class Logica {
 				per.eliminarElemento();
 			}
 		}
-		System.out.println(objetos.size());
 	}
 
 	public void crearNuevosE() {

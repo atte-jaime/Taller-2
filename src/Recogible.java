@@ -7,5 +7,4 @@ public interface Recogible {
 	void setSize(float size);
 	int getPosX();
 	int getPosY();
-	
 }

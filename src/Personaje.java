@@ -16,7 +16,7 @@ public class Personaje {
 	private float velMax;
 	private float poder;
 	private float vida = 250;
-	private float tamaño=1;
+	private float tamaño = 1;
 	private float resis;
 	private LinkedList<Recogible> elementos;
 
@@ -30,6 +30,7 @@ public class Personaje {
 		personaje = p;
 		personaje.disableStyle();
 		elementos = new LinkedList<Recogible>();
+		app.shapeMode(PApplet.CENTER);
 	}
 
 	public void actualizar() {
@@ -67,7 +68,7 @@ public class Personaje {
 		app.pushMatrix();
 		app.translate(pos.x, pos.y);
 		app.rotate(angulo);
-		app.shape(personaje,0,0, personaje.width/tamaño, personaje.height/tamaño);
+		app.shape(personaje, 0, 0, personaje.width / tamaño, personaje.height / tamaño);
 		app.popMatrix();
 		app.fill(255);
 		app.textSize(25);
@@ -83,38 +84,17 @@ public class Personaje {
 	}
 
 	public void pintarElementos() {
-		float angulo = vel.heading() + PApplet.PI / 2;
-		app.fill(255);
-		app.noStroke();
-		app.pushMatrix();
-		app.translate(pos.x, pos.y);
-		app.rotate(angulo);
 		for (int i = 0; i < elementos.size(); i++) {
 			Recogible e = elementos.get(i);
+			float x = PApplet.cos(PApplet.radians((360 / elementos.size()) * i)) * 70 + pos.x;
+			float y = PApplet.sin(PApplet.radians((360 / elementos.size()) * i)) * 70 + pos.y;
+			e.setSize(2);
+			e.setPosX((int) x);
+			e.setPosY((int) y);
 			e.pintar();
-			e.setSize((float) 1.5);
-			if (i < 2) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(40);
-			} else if (i >= 2 && i < 4) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(80);
-			} else if (i >= 4 && i < 6) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(120);
-			} else if (i >= 6 && i < 8) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(160);
-			} else if (i >= 8 && i < 10) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(200);
-			} else if (i >= 10 && i < 12) {
-				e.setPosX(-15 + (i % 2 * 30));
-				e.setPosY(240);
-			}
-		}
-		app.popMatrix();
+			System.out.println("Elemento # " + i + " ángulo: " + ((360 / elementos.size()) * i));
 
+		}
 	}
 
 	public void agregarElemento(Recogible e) {
@@ -170,15 +150,16 @@ public class Personaje {
 	}
 
 	public void setVida(float vida) {
-		if (this.vida+(vida)<250 && this.vida+(vida)>0) {
+		if (this.vida + (vida) < 250 && this.vida + (vida) > 0) {
 			this.vida += vida;
 		}
 	}
 
 	public void setTamaño(float tamaño) {
-		if (this.tamaño+(tamaño)> 0.5 && this.tamaño+(tamaño)< 3) {
+		if (this.tamaño + (tamaño) > 0.5 && this.tamaño + (tamaño) < 3) {
 			this.tamaño += tamaño;
-	}}
+		}
+	}
 
 	public void setResis(float resis) {
 		this.resis += resis;
